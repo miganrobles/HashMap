@@ -102,7 +102,22 @@ public class MiHashMap
     {
         int valor = -1;
         if (containsKey(clave)) {
-           
+            int valores2[] = valores;
+            String claves2[] = claves;
+            claves = new String[claves.length - 1];
+            valores = new int[valores.length - 1];
+            int indice1 = 0;
+            for (int indice = 0; indice < claves2.length; indice++) {
+                String key = claves2[indice];
+                if (!(key.equals(clave))) {
+                    claves[indice1] = claves2[indice];
+                    valores[indice1] = valores2[indice];
+                    indice1++;
+                }
+                else {
+                    valor = valores2[indice];
+                }
+            }
         }
         return valor;
     }
