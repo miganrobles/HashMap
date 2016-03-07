@@ -11,7 +11,7 @@ public class MiHashMap
     private String[] claves;
     // Almacena los elementos de nuestro HashMap
     private int[] valores;
-   
+
     /**
      * Constructor for objects of class MiHashMap
      */
@@ -21,7 +21,39 @@ public class MiHashMap
         claves = new String[0];
         valores = new int[0];
     }
-    
+
+    /**
+     * Asocia el valor especificado con la clave especificada. Si la clave existía, entonces sobreescribe su valor y devuelve el valor antiguo. 
+     * Si no existía devuelve -1.
+     */
+    public int put(String clave, int valor)
+    {
+        int val = -1;
+        if (containsKey(clave)) {
+            int index = 0;
+            while (index < claves.length && val == -1) {
+                if (claves[index].equals(clave)) {
+                    val = valores[index];
+                }
+                index++;
+            }
+            valores[index - 1] = valor;        
+        }
+        else {
+            int valores2[] = valores;
+            String claves2[] = claves;
+            claves = new String[claves.length + 1];
+            valores = new int[valores.length + 1];
+            for (int index = 0; index < valores2.length; index++) {
+                valores[index] = valores2[index];
+                claves[index] = claves2[index];
+            }
+            claves[claves.length - 1] = clave;
+            valores[valores.length - 1] = valor;
+        }
+        return val;
+    }
+
     /**
      * Devuelve el valor asociado con la clave especificada o -1 en caso de que la clave no exista.
      */
@@ -29,7 +61,7 @@ public class MiHashMap
     {
         int val = -1;
         int index = 0;
-        while (index < claves.length && val == -1) {
+        while (index < claves.length && (val == -1)) {
             if (claves[index] == clave) {
                 val = valores[index];
             }
@@ -37,7 +69,7 @@ public class MiHashMap
         }
         return val;
     }
-    
+
     /**
      * Vacía el mapa
      */
@@ -46,7 +78,7 @@ public class MiHashMap
         claves = new String[0];
         valores = new int[0];
     }
-    
+
     /**
      * Devuelve true si el mapa no contiene elementos
      */
@@ -54,7 +86,7 @@ public class MiHashMap
     {
         return claves.length == 0;
     }
-    
+
     /**
      * Devuelve el número de elementos del mapa
      */
@@ -62,7 +94,7 @@ public class MiHashMap
     {
         return claves.length;
     }
-    
+
     /**
      * Devuelve true si el mapa contiene la clave dada
      */
@@ -78,7 +110,7 @@ public class MiHashMap
         }
         return val;
     }
-    
+
     /**
      * Devuelve true si el mapa contiene el valor dado.
      */
