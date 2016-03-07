@@ -96,6 +96,25 @@ public class MiHashMap
     }
 
     /**
+     * Elimina del mapa el elemento con la clave dada y devuelve su valor. Si no hay esa clave en el mapa devuelve -1.
+     */
+    public void remove(String clave)
+    {
+        int valor = -1;
+        if (containsKey(clave)) {
+            int index = 0;
+            while (index < claves.length && val == -1) {
+                if (claves[index].equals(clave)) {
+                    val = valores[index];
+                }
+                index++;
+            }
+            valores[index - 1] = valor;
+        }
+        return valor;
+    }
+
+    /**
      * Devuelve true si el mapa contiene la clave dada
      */
     public boolean containsKey(String clave)
