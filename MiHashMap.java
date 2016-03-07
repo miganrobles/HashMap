@@ -29,27 +29,25 @@ public class MiHashMap
     public int put(String clave, int valor)
     {
         int val = -1;
-        if (containsKey(clave)) {
-            int index = 0;
-            while (index < claves.length && val == -1) {
-                if (claves[index].equals(clave)) {
-                    val = valores[index];
-                }
-                index++;
+        int index = 0;
+        while (index < claves.length && val == -1) {
+            if (claves[index].equals(clave)) { // Si la clave existe
+                val = valores[index]; // Guarda el valor para devolverlo
+                valores[index] = valor; // Remplaza el valor
             }
-            valores[index - 1] = valor;        
+            index++;
         }
-        else {
+        if (val == -1) { // Si la clave no exitía
             int valores2[] = valores;
             String claves2[] = claves;
             claves = new String[claves.length + 1];
             valores = new int[valores.length + 1];
-            for (int index = 0; index < valores2.length; index++) {
+            for (index = 0; index < valores2.length; index++) {
                 valores[index] = valores2[index];
                 claves[index] = claves2[index];
             }
             claves[claves.length - 1] = clave;
-            valores[valores.length - 1] = valor;
+            valores[claves.length - 1] = valor;
         }
         return val;
     }
@@ -62,7 +60,7 @@ public class MiHashMap
         int val = -1;
         int index = 0;
         while (index < claves.length && (val == -1)) {
-            if (claves[index] == clave) {
+            if (claves[index].equals(clave)) {
                 val = valores[index];
             }
             index++;
@@ -101,7 +99,7 @@ public class MiHashMap
     public int remove(String clave)
     {
         int valor = -1;
-        if (containsKey(clave)) {
+        if (containsKey(clave)) { // Solo si la clave existe
             int valores2[] = valores;
             String claves2[] = claves;
             claves = new String[claves.length - 1];
@@ -109,12 +107,12 @@ public class MiHashMap
             int indice1 = 0;
             for (int indice = 0; indice < claves2.length; indice++) {
                 String key = claves2[indice];
-                if (!(key.equals(clave))) {
+                if (!(key.equals(clave))) { // Si no es la clave
                     claves[indice1] = claves2[indice];
                     valores[indice1] = valores2[indice];
                     indice1++;
                 }
-                else {
+                else { // Si es la clave guarda el valor y la salta
                     valor = valores2[indice];
                 }
             }
@@ -127,15 +125,7 @@ public class MiHashMap
      */
     public boolean containsKey(String clave)
     {
-        boolean val = false;
-        int index = 0;
-        while (index < claves.length && !val) {
-            if (claves[index].equals(clave)) {
-                val = true;
-            }
-            index++;
-        }
-        return val;
+        return !(get(clave) == -1);
     }
 
     /**
