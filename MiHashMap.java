@@ -22,4 +22,18 @@ public class MiHashMap
         valores = new int[0];
     }
     
+    /**
+     * Devuelve true si el mapa contiene la clave dada
+     */
+    public boolean containsKey(String clave)
+    {
+        boolean valor = false;
+        int index = 0;
+        while (index < claves.length && !valor) {
+            if (claves[index].equals(clave)) {
+                valor = true;
+            }
+        }
+        return valor;
+    }
 }
