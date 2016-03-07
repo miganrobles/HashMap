@@ -36,13 +36,30 @@ public class MiHashMap
      */
     public boolean containsKey(String clave)
     {
-        boolean valor = false;
+        boolean val = false;
         int index = 0;
-        while (index < claves.length && !valor) {
+        while (index < claves.length && !val) {
             if (claves[index].equals(clave)) {
-                valor = true;
+                val = true;
             }
+            index++;
         }
-        return valor;
+        return val;
+    }
+    
+    /**
+     * Devuelve true si el mapa contiene el valor dado.
+     */
+    public boolean containsValue(int valor)
+    {
+        boolean val = false;
+        int index = 0;
+        while (index < valores.length && !val) {
+            if (valores[index] == valor) {
+                val = true;
+            }
+            index++;
+        }
+        return val;
     }
 }
