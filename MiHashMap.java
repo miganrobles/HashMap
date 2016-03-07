@@ -32,6 +32,14 @@ public class MiHashMap
     }
     
     /**
+     * Devuelve el número de elementos del mapa
+     */
+    public int size()
+    {
+        return claves.length;
+    }
+    
+    /**
      * Devuelve true si el mapa contiene la clave dada
      */
     public boolean containsKey(String clave)
