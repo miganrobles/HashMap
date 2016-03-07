@@ -32,6 +32,14 @@ public class MiHashMap
     }
     
     /**
+     * Devuelve true si el mapa no contiene elementos
+     */
+    public boolean isEmpty()
+    {
+        return claves.length == 0;
+    }
+    
+    /**
      * Devuelve el número de elementos del mapa
      */
     public int size()
