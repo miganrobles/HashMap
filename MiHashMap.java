@@ -23,6 +23,15 @@ public class MiHashMap
     }
     
     /**
+     * Vacía el mapa
+     */
+    public void clear() 
+    {
+        claves = new String[0];
+        valores = new int[0];
+    }
+    
+    /**
      * Devuelve true si el mapa contiene la clave dada
      */
     public boolean containsKey(String clave)
