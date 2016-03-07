@@ -23,6 +23,22 @@ public class MiHashMap
     }
     
     /**
+     * Devuelve el valor asociado con la clave especificada o -1 en caso de que la clave no exista.
+     */
+    public int get(String clave)
+    {
+        int val = -1;
+        int index = 0;
+        while (index < claves.length && val == -1) {
+            if (claves[index] == clave) {
+                val = valores[index];
+            }
+            index++;
+        }
+        return val;
+    }
+    
+    /**
      * Vacía el mapa
      */
     public void clear() 
